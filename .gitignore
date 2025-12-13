@@ -1,0 +1,88 @@
+# -----------------------------------------------------------------------------
+# Node.js
+# -----------------------------------------------------------------------------
+
+# Dependencias de módulos locales
+/node_modules
+
+# Archivos de caché generados por npm
+# Estos se pueden regenerar con 'npm cache clean --force'
+.npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Archivos de la caché del paquete (por ejemplo, para yarn v2+)
+.pnp
+.pnp.js
+
+# Producción
+# Los archivos de compilación, dist, o empaquetados deben ser ignorados
+/dist
+/build
+/out
+/es
+/esm
+
+# Archivos generados por el sistema de empaquetado (como Webpack o Rollup)
+/coverage
+/public/build
+
+# Directorio de logs
+/logs
+
+# Archivos de entorno (que contienen secretos o configuraciones específicas)
+.env
+.env.development
+.env.production
+.env.local
+.env.test
+.env.staging
+
+# Archivos de historial de instalación o bloqueo
+/package-lock.json
+/yarn.lock # Si usas npm, puedes ignorar este. Si usas yarn, ignora package-lock.json.
+/pnpm-lock.yaml
+
+# Archivos generados por paquetes de testing/linting/documentación
+/junit.xml
+/test-report.xml
+/html-report
+
+# TypeScript/CoffeeScript/etc.
+# Ignorar los archivos JavaScript compilados si tienes los archivos fuente (TypeScript) en el repo.
+# Por ejemplo, si tienes '/src/index.ts' y el compilador genera '/dist/index.js'
+# Si tu TS está configurado para compilar a la raíz, ajusta esto.
+*.js.map
+*.d.ts
+
+# Archivos temporales o de OS
+*~
+# Archivos de macOS
+.DS_Store
+# Archivos de Windows
+Thumbs.db
+# Archivos de Linux/Vim
+*.swp
+.idea/
+.vscode/
+
+# -----------------------------------------------------------------------------
+# Express/Frameworks Comunes (General)
+# -----------------------------------------------------------------------------
+
+# Archivos de sesión y caché de Express/otros frameworks
+/temp
+/tmp
+
+# Archivos generados por MongoDB/Mongoose (si estás usando una base de datos local)
+/data/db/
+
+# Certificados SSL locales (si usas https localmente)
+*.key
+*.pem
+*.cert
+
+# Archivos de carga de usuario (uploads)
+/uploads
