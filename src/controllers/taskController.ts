@@ -9,11 +9,15 @@ const Task = initTaskModel(db.sequelize);
 
 export const postTask = async (req: Request<{}, {}, TaskInput>, res: Response<TaskOutput | { message: string }>) => {
     try {
+        console.log(req.body)
+
         const { title, description, labels } = req.body;
 
         if (!title) {
             return res.status(400).json({ message: 'El título es obligatorio.' });
         }
+
+        console.log('pasa por aqui si hay titulo')
 
         const newTask = await Task.create({
             title,
@@ -22,8 +26,11 @@ export const postTask = async (req: Request<{}, {}, TaskInput>, res: Response<Ta
             done: false
         }) as TaskOutput;
 
+        console.log('pasa por aqui despues de la creacion')
+
         return res.status(201).json(newTask);
     } catch (error: any) {
+        console.log(error)
         return res.status(500).json({ message: 'Error interno del servidor al crear la tarea. ' + error.message });
     }
 }

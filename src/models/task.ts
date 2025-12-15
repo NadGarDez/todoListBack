@@ -10,7 +10,7 @@ export interface TaskAttributes {
   updatedAt?: Date;
 }
 
-interface TaskCreationAttributes extends Optional<TaskAttributes, 'id' | 'description' | 'createdAt' | 'updatedAt'> {}
+interface TaskCreationAttributes extends Optional<TaskAttributes, 'id' | 'description' | 'createdAt' | 'updatedAt'> { }
 
 class Task extends Model<TaskAttributes, TaskCreationAttributes> implements TaskAttributes {
   public id!: number;
@@ -18,7 +18,7 @@ class Task extends Model<TaskAttributes, TaskCreationAttributes> implements Task
   public description!: string | null;
   public labels!: string[];
   public done!: boolean;
-  
+
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 
@@ -44,9 +44,27 @@ export const initTaskModel = (sequelize: Sequelize): typeof Task => {
       },
       labels: {
         type: DataTypes.JSON,
-        get() {
+        get(): string[] {
           const rawValue = this.getDataValue('labels');
-          return rawValue ? rawValue : [];
+
+          if (!rawValue) {
+            return [];
+          }
+
+          if (Array.isArray(rawValue)) {
+            return rawValue;
+          }
+
+          if (typeof rawValue === 'string') {
+            try {
+              return JSON.parse(rawValue) as string[];
+            } catch (e) {
+              console.error("Error al parsear JSON de labels:", e);
+              return [];
+            }
+          }
+
+          return [];
         },
         set(val: string[]) {
           this.setDataValue('labels', val);
