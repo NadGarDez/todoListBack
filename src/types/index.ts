@@ -1,3 +1,6 @@
+import { CognitoAccessTokenPayload } from "aws-jwt-verify/jwt-model";
+import { Request, Response, NextFunction } from 'express';
+
 export interface TaskInput {
     title: string;
     description?: string;
@@ -13,4 +16,9 @@ export interface TaskOutput {
     done: boolean;
     createdAt: Date;
     updatedAt: Date;
+}
+
+
+export interface AuthRequest extends Request {
+  user?: CognitoAccessTokenPayload;
 }

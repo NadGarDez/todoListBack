@@ -1,13 +1,14 @@
 import { Router } from "express"
 import { deleteTask, getAllTasks, getTask, postTask, updateTask } from "../controllers/taskController";
+import { validateCognitoToken } from "../middlewares/cognitoMiddleware";
 
 const router = Router()
 
-router.post('/', postTask);             
-router.get('/', getAllTasks);             
-router.get('/:id', getTask);            
-router.put('/:id', updateTask);             
-router.delete('/:id', deleteTask)
+router.post('/',validateCognitoToken, postTask);             
+router.get('/',validateCognitoToken, getAllTasks);             
+router.get('/:id',validateCognitoToken, getTask);            
+router.put('/:id', validateCognitoToken, updateTask);             
+router.delete('/:id',validateCognitoToken, deleteTask)
 
 
 export default router;
